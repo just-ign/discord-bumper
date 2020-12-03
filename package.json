@@ -34,12 +34,20 @@
   },
   "build": {
     "appId": "com.ai.sen",
+    "win": {
+      "target": [
+        "portable"
+      ]
+    },
+    "portable": {
+      "artifactName": "bumper_portable.exe"
+    },
     "files": [
       "build/**/*",
       "node_modules/**/*"
     ],
     "directories": {
-      "buildResources": "assets"
+      "buildResources": "buildResources/"
     }
   },
   "eslintConfig": {

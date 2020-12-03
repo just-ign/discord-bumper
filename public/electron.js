@@ -18,8 +18,11 @@ let mainWindow;
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
+    width: 720,
     height: 600,
+    icon: path.join(__dirname, "./icon.ico"),
+    resizable: false,
+    autoHideMenuBar: true,
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
