@@ -3,10 +3,13 @@ const electron = require("electron");
 const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
+// To use IPC
+const ipcMain = electron.ipcMain;
 
 const path = require("path");
 const url = require("url");
 const isDev = require("electron-is-dev");
+const robot = require("robotjs");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -18,7 +21,8 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      contextIsolation: true,
+      contextIsolation: false,
+      nodeIntegration: true,
     },
   });
 
@@ -45,6 +49,12 @@ function createWindow() {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on("ready", createWindow);
+
+ipcMain.on("bump", (event, args) => {
+  robot.setKeyboardDelay(1);
+  robot.typeString("!d bump");
+  robot.keyTap("enter");
+});
 
 // Quit when all windows are closed.
 app.on("window-all-closed", function () {
