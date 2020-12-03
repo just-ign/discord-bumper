@@ -13,9 +13,9 @@ const { ipcRenderer } = window.require("electron");
 
 const Landing = () => {
   const [selectedDate, setSelectedDate] = useState(Date.now());
-  const [remainingSetTime, setRemainingTime] = useState(5);
+  const [remainingSetTime, setRemainingTime] = useState(10);
   const [session, setSession] = useState(false);
-  const interval = 10;
+  const interval = 60 * 60 * 2 + 60;
 
   const handleComplete = () => {
     ipcRenderer.send("bump");
@@ -95,6 +95,7 @@ const Landing = () => {
           </Button>
         </div>
       )}
+      <div className="credits">{"Made by Mumu with <3"}</div>
     </div>
   );
 };
